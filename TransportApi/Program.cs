@@ -24,6 +24,8 @@ builder.Services
 
 builder.Services.AddClassesMatchingInterfaces();
 
+builder.Services.AddOutputCache();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,5 +40,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseOutputCache();
 
 app.Run();

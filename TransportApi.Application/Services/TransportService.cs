@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using OneOf;
-
 using TransportApi.Application.Errors;
 using TransportApi.Application.Services.Interfaces;
 using TransportApi.Domain.Dtos;
@@ -30,7 +29,7 @@ namespace TransportApi.Application.Services
                 foreach(var t in transports)
                 {
                     if (t is Airplane)
-                        Console.WriteLine($"The {t.Model} is a airplane!");                 
+                        Console.WriteLine($"The {t.Model} is a airplane!");
                     else
                         Console.WriteLine($"The {t.Model} is a car!");
                 }

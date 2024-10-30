@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TransportApi.Application.Errors;
+using Microsoft.AspNetCore.OutputCaching;
 using TransportApi.Application.Services.Interfaces;
 using TransportApi.Domain.Dtos;
-using TransportApi.Domain.Entities;
 
 namespace TransportApi.Controllers
 {
@@ -18,6 +17,7 @@ namespace TransportApi.Controllers
         }
 
         [HttpGet]
+        [OutputCache(Duration = 5)]
         public async Task<IActionResult> GetTransports()
         {
             var result = await _transportService.GetAll();
@@ -41,7 +41,6 @@ namespace TransportApi.Controllers
                 },
                 failure => BadRequest(failure)
                 );
-            
         }
     }
 }
