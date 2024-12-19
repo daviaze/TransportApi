@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using System.Data;
 using TransportApi.Domain.Dtos;
 
 namespace TransportApi.Domain.Validators

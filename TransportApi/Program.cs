@@ -2,6 +2,7 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using TransportApi.Application.DependecyInjection;
 using TransportApi.Domain.Validators;
+using TransportApi.Exceptions;
 using TransportApi.Infra.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,9 @@ builder.Services .AddValidatorsFromAssemblyContaining<TransportValidator>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
 builder.Services.AddSwaggerGen();
 
 builder.Services
@@ -27,6 +31,8 @@ builder.Services.AddClassesMatchingInterfaces();
 builder.Services.AddOutputCache();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(opt => { });
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

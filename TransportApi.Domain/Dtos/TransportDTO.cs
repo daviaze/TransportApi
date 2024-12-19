@@ -2,7 +2,7 @@
 
 namespace TransportApi.Domain.Dtos
 {
-    public record TransportDTO(Guid Id,
+    public sealed record TransportDTO(Guid Id,
      string Mode,
      TypeTransport TypeTransport,
      StatusTransport StatusTransport)

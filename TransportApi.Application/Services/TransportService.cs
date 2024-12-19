@@ -22,8 +22,7 @@ namespace TransportApi.Application.Services
 
         public async Task<OneOf<List<Transport>, ServiceError>> GetAll()
         {
-            try
-            {
+            throw new DbUpdateException("blablabla");
                 IEnumerable<Transport> transports = await _context.Transports.ToListAsync();
 
                 foreach(var t in transports)
@@ -35,16 +34,10 @@ namespace TransportApi.Application.Services
                 }
 
                 return transports.ToList();
-            }catch(Exception ex)
-            {
-                return new NotExpectedError(ex.Message);
-            }
         }
 
         public async Task<OneOf<Transport, ServiceError>> Post(TransportPostDTO transportDTO)
         {
-            try
-            {
                 var validate = _validator.Validate(transportDTO);
                 if (!validate.IsValid)
                     return new ValidationError(validate.Errors);
@@ -60,11 +53,6 @@ namespace TransportApi.Application.Services
                 await _context.SaveChangesAsync();
 
                 return transport;
-            }
-            catch (Exception ex)
-            {
-                return new NotExpectedError(ex.Message);
-            }
         }
     }
 }

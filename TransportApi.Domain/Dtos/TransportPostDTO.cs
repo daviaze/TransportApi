@@ -2,7 +2,7 @@
 
 namespace TransportApi.Domain.Dtos
 {
-    public record TransportPostDTO(
+    public sealed record TransportPostDTO(
      string Model,
      TypeTransport TypeTransport)
     {
